@@ -74,7 +74,6 @@ function App() {
   const vaciarCarrito = () => {
     setCarrito([]);
   };
-  
   const totalProductos = carrito.reduce((total, item) => total + item.cantidad, 0);
   const precioTotal = carrito.reduce((total, item) => total + (item.price * item.cantidad), 0);
 
@@ -91,32 +90,33 @@ function App() {
 
   return (
     <CarritoContext.Provider value={carritoContextValue}>
-      <BrowserRouter basename="/zasherreraelian-preentrega1">
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          minHeight: '100vh' 
-        }}>
-          <Header />
-          <main style={{ flex: 1 }}>
-            <Routes>
-              <Route path="/" element={<Inicio />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/productos" element={<Productos />} />
-              <Route path="/producto/:id" element={<DetalleProducto />} />
-              <Route path="/carrito" element={
-                <RutaProtegida><Carrito /></RutaProtegida>
-              } />
-              <Route path="/perfil/:id" element={
-                <RutaProtegida><Perfil /></RutaProtegida>
-              } />
-              <Route path="/admin" element={
-                <RutaProtegida><Administracion /></RutaProtegida>
-              } />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+      <BrowserRouter>
+   <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        minHeight: '100vh' 
+      }}>
+        <Header />
+        {/* Main content que ocupa todo el espacio disponible */}
+        <main style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/producto/:id" element={<DetalleProducto />} />
+            <Route path="/carrito" element={
+              <RutaProtegida><Carrito /></RutaProtegida>
+            } />
+            <Route path="/perfil/:id" element={
+              <RutaProtegida><Perfil /></RutaProtegida>
+            } />
+            <Route path="/admin" element={
+              <RutaProtegida><Administracion /></RutaProtegida>
+            } />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
       </BrowserRouter>
     </CarritoContext.Provider>
   );
